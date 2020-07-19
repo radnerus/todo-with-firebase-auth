@@ -6,25 +6,24 @@ function LoginPage() {
   const [email, setEmail] = useState<string>('');
   const [password, setPassword] = useState('');
   const [displayName, setDisplayName] = useState('');
+  const [isPending, setIsPending] = useState(false);
   const url = useRouteMatch();
   const isLogin = url.path === '/login';
   const pageAction = isLogin ? 'Login' : 'SignUp';
+
   const authenticate = async (event: FormEvent) => {
     event.preventDefault();
 
     try {
-      if (!isLogin) {
+      if (!isLogin && !isPending) {
+        setIsPending(true);
         await signUpUser(displayName, email, password);
       } else {
         await signIn(email, password);
       }
-    } catch (error) {}
-  };
-
-  const reset = () => {
-    setDisplayName('');
-    setEmail('');
-    setPassword('');
+    } catch (error) {
+      setIsPending(false);
+    }
   };
 
   return (
@@ -54,7 +53,9 @@ function LoginPage() {
           onChange={(e) => setPassword(e.target.value)}
           required
         />
-        <button type="submit">{pageAction}</button>
+        <button type="submit" disabled={isPending}>
+          {pageAction}
+        </button>
         <Link to={isLogin ? '/signup' : '/login'}>
           {isLogin ? 'New User? SignUp.' : 'Already registered? Login.'}
         </Link>
