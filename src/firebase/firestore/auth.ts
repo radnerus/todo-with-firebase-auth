@@ -11,12 +11,10 @@ const signUpUser = async (
       email,
       password
     );
-    console.log(userCredentials.user);
     if (!userCredentials?.user) {
       return console.error('Error while creating user');
     }
     const user = await createUser(userCredentials.user, { displayName });
-    console.log(user);
     return user;
   } catch (e) {
     alert(`Couldn't signup at the moment! Try again later`);

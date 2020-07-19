@@ -18,14 +18,11 @@ function TodoPage() {
   useEffect(() => {
     const getTodos = () => {
       const { uid } = userContext;
-      console.log(uid);
       return getTodosCollection(uid).onSnapshot((snapshot) => {
         const todos: Todo[] = snapshot.docs.map((doc: any) => ({
           ...doc.data(),
           id: doc.id
         }));
-        console.log(todos);
-
         setTodos(todos);
       });
     };

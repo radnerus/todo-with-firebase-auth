@@ -10,7 +10,6 @@ function TodoForm() {
 
   const addTodoHandler = async (todoName: string) => {
     const added = await addTodo(todoName);
-    console.log(added);
     if (!added.error) {
       setTaskName('');
     }

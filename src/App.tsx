@@ -18,31 +18,23 @@ function App() {
   const [user, setUser] = useState<User>(new User());
   useEffect(() => {
     auth.onAuthStateChanged(async (userAuth) => {
-      console.log('State changed');
       if (userAuth?.uid) {
         if (window.location.pathname === '/signup') {
-          console.log('signup');
           return setTimeout(async () => {
-            console.log('signup after wait');
-
             const user = await getUser(userAuth.uid);
             if (user) {
               setUser(user);
-              console.log(user);
             }
           }, 2000);
         } else {
           const user = await getUser(userAuth.uid);
           if (user) {
             setUser(user);
-            console.log(user);
           }
         }
       } else {
-        console.log('not logged in');
         setUser(new User());
         resetUser();
-        console.log(window.location.pathname);
       }
     });
   }, []);

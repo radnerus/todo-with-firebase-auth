@@ -36,7 +36,6 @@ const createUser = async (
 const getUser = async (uid: string) => {
   try {
     const userDocument = await getUserDocumentData(uid);
-    console.log('user data', userDocument.data());
     return {
       uid,
       ...userDocument.data()

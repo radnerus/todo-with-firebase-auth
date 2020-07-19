@@ -9,20 +9,14 @@ function LoginPage() {
   const url = useRouteMatch();
   const isLogin = url.path === '/login';
   const pageAction = isLogin ? 'Login' : 'SignUp';
-  console.log(url.path);
   const authenticate = async (event: FormEvent) => {
     event.preventDefault();
 
-    console.log('submit');
     try {
       if (!isLogin) {
-        const user = await signUpUser(displayName, email, password);
-        console.log(user);
-        // reset();
+        await signUpUser(displayName, email, password);
       } else {
-        const user = await signIn(email, password);
-        console.log(user);
-        reset();
+        await signIn(email, password);
       }
     } catch (error) {}
   };
