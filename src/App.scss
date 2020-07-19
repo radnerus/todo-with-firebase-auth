@@ -1,0 +1,129 @@
+@import url('https://fonts.googleapis.com/css2?family=Fira+Sans:wght@500&display=swap');
+$body-background: black;
+$button-background: black;
+$task-background: black;
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Fira Sans', sans-serif;
+    letter-spacing: 0.1em;
+    font-size: 20px;
+}
+
+body {
+    height: 100vh;
+    background: rgb(34, 193, 195);
+    background: $body-background;
+    color: white;
+}
+
+.container {
+    padding-top: 20px;
+    width: 80%;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    .todo-form,
+    .login-form {
+        padding: 10px;
+        border-radius: 10px;
+        margin-top: 50px;
+        input,
+        button {
+            padding: 10px;
+        }
+        input {
+            outline: 0;
+            border-width: 0 0 2px;
+            border-color: white;
+            color: white;
+            background-color: transparent;
+        }
+        button {
+            margin-top: 10px;
+            margin-left: 5px;
+            border-radius: 10px;
+            background: $button-background;
+            color: white;
+            &:focus {
+                border-radius: 10px;
+            }
+            @media screen and (max-width: 600px) {
+                float: right;
+            }
+        }
+    }
+    .tasks-pane {
+        max-height: 90%;
+        width: 100%;
+        overflow-y: scroll;
+        ul.tasks {
+            width: 100%;
+            list-style-type: none;
+            li {
+                background: $task-background;
+                padding: 10px;
+                // border: 1px solid red;
+                border-radius: 10px;
+                margin: 10px;
+                color: white;
+                .todo {
+                    width: 80%;
+                    display: inline-block;
+                    &.strike {
+                        text-decoration: line-through;
+                    }
+                    .date {
+                        font-size: 0.5rem;
+                    }
+                    @media screen and (max-width: 600px) {
+                        width: auto;
+                    }
+                }
+                button {
+                    width: 10%;
+                    padding: 1px 10px;
+                    float: right;
+                    border-radius: 10px;
+                    background: $button-background;
+                    color: white;
+                    @media screen and (max-width: 600px) {
+                        width: auto;
+                    }
+                }
+            }
+        }
+    }
+    .login {
+        h1 {
+            font-size: 2em;
+            text-align: center;
+        }
+        form.login-form {
+            display: flex;
+            flex-direction: column;
+            input,
+            button {
+                margin-bottom: 20px;
+            }
+            input {
+                font-size: 0.7em;
+            }
+            a {
+                color: white;
+                text-align: center;
+            }
+        }
+    }
+    .logged-in-user {
+        position: absolute;
+        right: 10%;
+        cursor: pointer;
+        .logout {
+            font-size: 0.7rem;
+            float: right;
+        }
+    }
+}
